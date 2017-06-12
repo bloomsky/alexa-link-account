@@ -1,0 +1,50 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html >
+    <head>
+      <meta charset="UTF-8">
+      <title>Flat Login Form 3.0</title>
+
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+
+      <link rel='stylesheet prefetch' href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900|RobotoDraft:400,100,300,500,700,900'>
+      <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
+
+      <link rel="stylesheet" type="text/css" href="{% static 'webconsole/css/style.css' %}">
+
+      <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+      <script src="{% static 'webconsole/js/index.js' %}"></script>
+      <script src="{% static 'webconsole/js/fblogin.js' %}"></script>
+    </head>
+
+    <body>
+
+      <div class="pen-title">
+        <img src="{% static 'webconsole/img/bloomsky_logo.png' %}" alt="logo">
+      </div>
+
+      <!-- Form Module-->
+      <div class="module form-module">
+        <div class="toggle"><i class="fa fa-times fa-pencil"></i>
+        </div>
+
+        <div class="form">
+          <h2>Login to your account</h2>
+          <form role="form" action="{% url 'webconsole:login' %}" method="post">
+            {% csrf_token %}
+            <input type="email" class="form-control" id="inputEmail3" name="email" placeholder="Username" required="">
+            <input type="password" class="form-control" id="inputPassword3" name="password" placeholder="Password" required="">
+            <button type="submit" class="btn btn-success btn-sm" value="Submit">Login</button>
+          </form>
+        </div>
+        <div>
+          <center>
+          <!-- <fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button> -->
+           <div class="fb-login-button" style="margin-bottom:20px;"data-auto-logout-link="true" onlogin="checkLoginState();"></div>
+           <p hidden id="error_msg" class='alert'>Not a registered user</p>
+          </center>
+        </div>
+      </div>
+
+    </body>
+</html>
